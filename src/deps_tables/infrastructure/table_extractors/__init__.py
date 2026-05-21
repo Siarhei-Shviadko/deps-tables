@@ -1,0 +1,4 @@
+from .aws_table_extractor import AWSTableExtractor
+from .azure_table_extractor import AzureTableExtractor
+from .deps_table_extractor import DepsTablesExtractor
+from .gcp_table_extractor import GCPTableExtractor

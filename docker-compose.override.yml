@@ -1,0 +1,69 @@
+version: "3.4"
+
+services:
+  tables:
+    build:
+      context: .
+      dockerfile: etc/deps-tables/Dockerfile
+      target: develop
+      args:
+        REPOSITORY_URL: "${REPOSITORY_URL}"
+      cache_from:
+        - "tables-dev:latest"
+    volumes:
+      - ./src/deps_tables:/app/deps_tables
+      - ./src/tests:/app/tests
+      - ./src/poetry.lock:/app/poetry.lock
+      - ./src/pyproject.toml:/app/pyproject.toml
+      - ./src/setup.cfg:/app/setup.cfg
+      - ./src/requirements.txt:/app/requirements.txt
+      - ./vendors/deps-core:/vendors/deps-core
+      - ./etc/deps-tables/models:/models
+    env_file:
+      - etc/deps-tables/env/.dev.env
+      - .env
+    environment:
+      WDB_SOCKET_SERVER: wdb
+      WDB_NO_BROWSER_AUTO_OPEN: "true"
+    ports:
+      - 5020:8000
+    external_links:
+      - deps-ocr:ocr
+    networks:
+      - deps-network
+    stdin_open: true
+    tty: true
+
+  tables-consumer:
+    build:
+      context: .
+      dockerfile: etc/deps-tables/Dockerfile
+      target: develop
+      args:
+        REPOSITORY_URL: "${REPOSITORY_URL}"
+      cache_from:
+        - "tables-dev:latest"
+    env_file:
+      - etc/deps-tables/env/.dev.env
+      - .env
+    environment:
+      WDB_SOCKET_SERVER: wdb
+      WDB_NO_BROWSER_AUTO_OPEN: "true"
+      OCR_VERSION: converter
+    networks:
+      - deps-network
+    volumes:
+      - ./vendors:/vendors
+      - ./etc/deps-tables/models:/models
+      - ./src/deps_tables:/app/deps_tables
+      - ./src/tests:/app/tests
+      - ./src/poetry.lock:/app/poetry.lock
+      - ./src/pyproject.toml:/app/pyproject.toml
+      - ./src/setup.cfg:/app/setup.cfg
+    stdin_open: true
+    tty: true
+
+networks:
+  deps-network:
+      name: deps-network
+      external: true

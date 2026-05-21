@@ -1,0 +1,6 @@
+[submodule "vendors/deps-pipelines"]
+	path = vendors/deps-pipelines
+	url = git@github.com:epam/deps-pipelines.git
+[submodule "vendors/deps-message-flow"]
+	path = vendors/deps-message-flow
+	url = git@github.com:epam/deps-message-flow.git

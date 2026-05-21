@@ -1,0 +1,42 @@
+tables:
+  image:
+    path: '/deps-platform/deps-tables'
+    pullPolicy: IfNotPresent
+  resources: { }
+  #  limits:
+  #    cpu:
+  #    memory:
+  #  requests:
+  #    cpu:
+  #    memory:
+  nodeSelector: { }
+  tolerations: [ ]
+  affinity: { }
+
+tables_consumer:
+  image:
+    path: '/deps-platform/deps-tables'
+    pullPolicy: IfNotPresent
+  resources: { }
+  #  limits:
+  #    cpu:
+  #    memory:
+  #  requests:
+  #    cpu:
+  #    memory:
+  nodeSelector: { }
+  tolerations: [ ]
+  affinity: { }
+
+tables_settings:
+  ENV: other
+  SENTRY_TRACES_SAMPLE_RATE: '0.1'
+  ENABLED_DETECTION_ENGINES: '["DEPS_DETECTOR","AWS_TEXTRACT","AZURE_FORM_RECOGNIZER","DEPS_CONVERTER"]'
+
+csi:
+  vault_namespace: 'k8s-other'
+  roleName: 'k8s-other'
+  vaultKubernetesMountPath: 'kubernetes-other'
+
+service_account:
+  serviceAccountName: 'deps-other'

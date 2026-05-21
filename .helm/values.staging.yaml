@@ -1,0 +1,42 @@
+tables:
+  image:
+    path: '/deps-platform/deps-tables'
+    pullPolicy: IfNotPresent
+  resources: { }
+  #  limits:
+  #    cpu:
+  #    memory:
+  #  requests:
+  #    cpu:
+  #    memory:
+  nodeSelector: { }
+  tolerations: [ ]
+  affinity: { }
+
+tables_consumer:
+  image:
+    path: '/deps-platform/deps-tables'
+    pullPolicy: IfNotPresent
+  resources: { }
+  #  limits:
+  #    cpu:
+  #    memory:
+  #  requests:
+  #    cpu:
+  #    memory:
+  nodeSelector: { }
+  tolerations: [ ]
+  affinity: { }
+
+tables_settings:
+  ENV: staging
+  ENABLED_DETECTION_ENGINES: '["DEPS_DETECTOR","DEPS_CONVERTER"]'
+  SENTRY_TRACES_SAMPLE_RATE: "0.2"
+
+csi:
+  vault_namespace: 'k8s-staging'
+  roleName: 'k8s-staging'
+  vaultKubernetesMountPath: 'kubernetes-staging'
+
+service_account:
+  serviceAccountName: 'deps-staging'

@@ -1,0 +1,11 @@
+version: "3.4"
+
+services:
+  tables:
+    image: "tables-dev"
+    container_name: deps-tables
+
+  tables-consumer:
+    image: "tables-dev"
+    container_name: deps-tables-consumer
+    command: python -m deps_tables consume

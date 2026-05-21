@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tables-configmap
+data:
+  ENV: {{ .Values.tables_settings.ENV }}
+  BLOB_STORAGE: {{ .Values.tables_settings.BLOB_STORAGE | quote }}
+  FILE_STORAGE_URL: {{ .Values.tables_settings.FILE_STORAGE_URL | quote }}
+  OCR_API_URL: {{ .Values.tables_settings.OCR_API_URL | quote }}
+  AWS_REGION_NAME: {{ .Values.tables_settings.AWS_REGION_NAME | quote }}
+  PROJECT_VERSION: {{ .Values.tables_settings.PROJECT_VERSION | quote }}
+  WORKERS: {{ .Values.tables_settings.WORKERS | quote }}
+  RELOAD: {{ .Values.tables_settings.RELOAD | quote }}
+  LOG_LEVEL: {{ .Values.tables_settings.LOG_LEVEL | quote }}
+  MAX_REQUESTS: {{ .Values.tables_settings.MAX_REQUESTS | quote }}
+  TIMEOUT: {{ .Values.tables_settings.TIMEOUT | quote }}
+  SENTRY_ENABLED: {{ .Values.tables_settings.SENTRY_ENABLED | quote }}
+  SENTRY_TRACES_SAMPLE_RATE: '{{ .Values.tables_settings.SENTRY_TRACES_SAMPLE_RATE }}'
+  DEBUG: {{ .Values.tables_settings.DEBUG | quote }}
+  ENABLE_GPU: {{ .Values.tables_settings.ENABLE_GPU | quote }}
+  IDENTIFY_TABLE_BORDERS: {{ .Values.tables_settings.IDENTIFY_TABLE_BORDERS | quote }}
+  AUTH_VERIFY_SSL: {{ .Values.tables_settings.AUTH_VERIFY_SSL | quote }}
+  ENABLED_DETECTION_ENGINES: {{ .Values.tables_settings.ENABLED_DETECTION_ENGINES | quote }}
+  PAID_ENGINES_RESTRICTION_ENABLED: {{ .Values.tables_settings.PAID_ENGINES_RESTRICTION_ENABLED | quote }}
+  PRIVILEGED_GROUP: {{ .Values.tables_settings.PRIVILEGED_GROUP | quote }}
+  KAFKA_GROUP_ID: {{ .Values.tables_settings.KAFKA_GROUP_ID | quote }}
+  {{ if .Values.tables_settings.KAFKA_SECURITY_ENABLED }}
+  KAFKA_SASL_MECHANISM: '{{ .Values.tables_settings.KAFKA_SASL_MECHANISM }}'
+  KAFKA_SECURITY_PROTOCOL: '{{ .Values.tables_settings.KAFKA_SECURITY_PROTOCOL }}'
+  {{ end }}
+  {{ if .Values.tables_settings.message_broker_asb_without_manage_permission }}
+  ASB_SUBSCRIPTION_STRATEGY: '{{ .Values.tables_settings.ASB_SUBSCRIPTION_STRATEGY }}'
+  {{ end }}
+  ASB_TOPIC_NAME: '{{ .Values.tables_settings.ASB_TOPIC_NAME }}'
