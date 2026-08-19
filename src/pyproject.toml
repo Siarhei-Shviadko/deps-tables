@@ -2,7 +2,7 @@
 name = "deps-tables"
 version = "0.1.1"
 description = "Table Detection and extraction service"
-authors = ["Aliaksei Y <Aliaksei_Y>"]
+authors = ["Aliaksei Yurkevich <Aliaksei_Yurkevich@epam.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9.7"

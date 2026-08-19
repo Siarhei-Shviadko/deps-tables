@@ -29,7 +29,7 @@ Before we get started make sure you've updated all project dependencies:
 git submodule update --init --recursive
 make install
 ```
-Login to docker registry (default is `${REPOSITORY_URL}` and your epam creds)
+Login to docker registry (default is `artifactory.epam.com:6254` and your epam creds)
 Then you need to build project containers for development:
 ```console
 make build

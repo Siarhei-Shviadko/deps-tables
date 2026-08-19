@@ -1,5 +1,5 @@
 ARG REPOSITORY_URL=""
-FROM ${REPOSITORY_URL}/base/python:3.9.7-slim AS python-base
+FROM ${REPOSITORY_URL:+$REPOSITORY_URL/base/}python:3.9.7-slim AS python-base
 
 
 ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib" \
